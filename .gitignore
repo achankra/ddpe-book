@@ -5,4 +5,19 @@
 .venv/
 venv/
 env/
+# Excel temp/lock files
+~$*.xlsx
+~$*.xls
+~$*.xlsm
+~$*.xltx
+~$*.xltm
+
+# Generic editor backups
+*~
+
+# Python virtual environments
+.venv/
+**/.venv/
+venv/
+env/
 
