@@ -1,0 +1,49 @@
+# payments_dashboard.yaml
+apiVersion: platform.ddpe.io/v1
+kind: DomainDashboard
+metadata:
+  name: payments-overview
+  domain: payments
+spec:
+  refresh: 30s
+  timeRange: 24h
+  panels:
+    - name: Transaction Success Rate
+      type: gauge
+      query: |
+        sum(rate(payment_transactions_total{status="success"}[5m])) /
+        sum(rate(payment_transactions_total[5m])) * 100
+      thresholds:
+        - value: 99.5
+          color: green
+        - value: 99.0
+          color: yellow
+        - value: 0
+          color: red
+
+    - name: Average Settlement 
+      type: timeseries
+      query: |
+        histogram_quantile(0.95,
+          rate(payment_settlement_duration_bucket[5m]))
+      unit: seconds
+
+    - name: Transaction Volume by Type
+      type: piechart
+      query: |
+        sum by (transaction_type) (
+          increase(payment_transactions_total[24h]))
+          
+    - name: Error Rate by Payment Method
+      type: table
+      query: |
+        sum by (payment_method) (
+          rate(payment_transactions_total{status="error"}[1h]))
+        / sum by (payment_method) (
+          rate(payment_transactions_total[1h])) * 100
+          
+  alerts:
+    - name: High Error Rate
+      condition: error_rate > 1%
+      severity: critical
+      runbook: docs/runbooks/high-error-rate.md
