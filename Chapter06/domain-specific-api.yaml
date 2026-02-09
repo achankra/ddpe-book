@@ -1,0 +1,38 @@
+# Domain-specific API endpoint 
+
+POST /api/v1/payments/databases 
+
+{ 
+
+  "name": "transaction-ledger", 
+  "tier": "production", 
+  "purpose": "transaction-storage" 
+
+} 
+
+  
+
+# Platform response with applied defaults 
+{ 
+  "id": "db-pay-txn-ledger-prod", 
+  "name": "transaction-ledger", 
+  "status": "provisioning", 
+
+  "connection": { 
+    "host": "txn-ledger.payments.internal", 
+    "port": 5432, 
+    "secret_ref": "vault:payments/db/txn-ledger" 
+
+  }, 
+
+  "applied_defaults": { 
+
+    "engine": "postgresql-15", 
+    "encryption": "aes-256-gcm", 
+    "backup_retention": "90d", 
+    "multi_az": true, 
+    "compliance": ["pci-dss-4.0"] 
+
+  }, 
+  "estimated_ready": "2024-01-15T10:15:00Z" 
+} 
