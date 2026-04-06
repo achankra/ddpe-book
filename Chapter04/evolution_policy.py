@@ -33,8 +33,8 @@ POLICIES = {
         migration_support_months=12,
         breaking_change_allowed=True  # With extended notice
     ),
-    "peripheral": EvolutionPolicy(
-        layer="peripheral",
+    "domain": EvolutionPolicy(
+        layer="domain",
         deprecation_notice_days=30,
         migration_support_months=6,
         breaking_change_allowed=True

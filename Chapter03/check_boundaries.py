@@ -5,8 +5,8 @@ from pathlib import Path
 
 # Define what each context is allowed to import
 BOUNDARIES = {
-    'payments': ['shared'],           # payments cannot import inventory, shipping
-    'inventory': ['shared'],          # inventory cannot import payments, shipping  
+    'payments': ['shared'],               # payments cannot import inventory, shipping
+    'inventory': ['shared'],              # inventory cannot import payments, shipping  
     'shipping': ['shared', 'inventory'],  # shipping can read inventory
 }
 
@@ -30,12 +30,3 @@ for context in BOUNDARIES:
     issues = check_context(context)
     status = "✓ Clean" if not issues else f"❌ {len(issues)} violations"
     print(f"{context}: {status}")
-
-
-
-
-
-
-
-
-    
