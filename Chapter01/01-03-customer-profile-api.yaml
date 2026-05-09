@@ -1,97 +1,64 @@
-"""
-IaC Mandatory Tag Validator
+# Customer Profile API - Service Request
+# This YAML defines a service provisioning request using the
+# domain-driven platform's self-service interface.
+#
+# Rather than specifying low-level infrastructure details,
+# the developer declares intent using domain concepts.
 
-This script ensures that any resource deployed via Infrastructure as Code
-(e.g., a DynamoDB table) includes mandatory, domain-specific tags.
+apiVersion: platform/v1
+kind: ServiceRequest
+metadata:
+  name: customer-profile-api
+  domain: customer-management
+  team: customer-experience
+  owner: cx-platform-team@company.com
 
-Tags enforce consistency for cost tracking, ownership signals, and
-governance compliance at the point of change.
-"""
+spec:
+  type: api-service
+  tier: production
 
-import json
+  # Domain-specific configuration
+  domain_context:
+    bounded_context: customer-management
+    data_classification: pii
+    compliance:
+      - gdpr
+      - ccpa
 
+  # The platform infers infrastructure from domain context
+  capabilities:
+    - name: data-store
+      purpose: customer-records
+      # Platform selects PostgreSQL with encryption based on PII classification
 
-# ============================================================================
-# Configuration
-# ============================================================================
+    - name: cache
+      purpose: session-management
+      ttl: 3600
 
-MANDATORY_TAGS = ["Owner", "Domain", "Environment"]
+    - name: event-stream
+      purpose: customer-events
+      # Platform provisions Kafka topic with appropriate retention
 
+  # Observability is automatic based on domain context
+  observability:
+    dashboards:
+      - customer-api-health
+      - customer-data-access-audit
+    alerts:
+      - type: latency
+        threshold_ms: 200
+        severity: critical
+      - type: error_rate
+        threshold_percent: 1.0
+        severity: warning
 
-# ============================================================================
-# Validation Logic
-# ============================================================================
-
-def validate_mandatory_tags(iac_file_path):
-    """
-    Checks an IaC configuration file for mandatory tags.
-
-    Args:
-        iac_file_path: Path to the infrastructure configuration file
-                       (JSON format, e.g., Terraform plan output)
-
-    Returns:
-        bool: True if all mandatory tags present, False otherwise
-    """
-    try:
-        with open(iac_file_path, 'r') as f:
-            config_data = json.load(f)
-
-        resource_tags = (
-            config_data
-            .get('resource_definition', {})
-            .get('tags', {})
-        )
-
-        missing_tags = [
-            tag for tag in MANDATORY_TAGS
-            if tag not in resource_tags
-        ]
-
-        if missing_tags:
-            print("--- GOVERNANCE CHECK FAILED ---")
-            print(f"Missing mandatory tags: {', '.join(missing_tags)}")
-            return False
-
-        print("--- GOVERNANCE CHECK PASSED ---")
-        print("All mandatory tags present. Deployment authorized.")
-        return True
-
-    except FileNotFoundError:
-        print(f"Error: Configuration file not found at {iac_file_path}")
-        return False
-
-    except json.JSONDecodeError:
-        print(f"Error: Invalid JSON format in {iac_file_path}")
-        return False
-
-
-# ============================================================================
-# Simulation
-# ============================================================================
-
-if __name__ == "__main__":
-
-    # Example IaC file (used by a Stream-Aligned Team)
-    example_config = {
-        "resource_definition": {
-            "type": "aws_dynamodb_table",
-            "name": "PaymentsLedger",
-            "tags": {
-                "Owner": "PaymentsTeam",
-                "Environment": "dev",
-                "CostCenter": "P42"  # Optional, non-mandatory tag
-            }
-        }
-    }
-
-    # Write simulated IaC file
-
-        json.dump(example_config, f, indent=2)
-
-    # Run the platform governance check
-    validate_mandatory_tags("payments_iac_config.json")
-
-
-
-
+  # Golden path deployment configuration
+  deployment:
+    strategy: blue-green
+    regions:
+      - us-east-1
+      - eu-west-1
+    scaling:
+      min_replicas: 3
+      max_replicas: 20
+      target_cpu_percent: 70

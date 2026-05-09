@@ -1,0 +1,56 @@
+# domain_defaults.yaml 
+apiVersion: platform.ddpe.io/v1 
+kind: DomainDefaults 
+metadata: 
+
+  name: payments-domain-defaults 
+  domain: payments 
+  version: v2.3.0 
+
+spec: 
+
+  infrastructure: 
+
+    compute: 
+      defaultSize: medium 
+      minReplicas: 3 
+      maxReplicas: 20 
+
+    database: 
+      engine: postgresql 
+      version: "15" 
+      encryption: aes-256-gcm 
+      backupRetention: 90d  # PCI-DSS requirement 
+      multiAZ: true 
+
+  security: 
+
+    authentication: 
+      method: oauth2 
+      tokenExpiry: 1h 
+
+    authorization: 
+      model: rbac 
+      defaultPolicy: deny 
+
+    compliance: 
+      frameworks: [pci-dss-4.0, soc2-type2] 
+      auditLogging: required 
+
+  observability: 
+
+    logging: 
+      level: info 
+      format: json 
+      retention: 90d 
+      piiMasking: enabled 
+
+    metrics: 
+      interval: 15s 
+      retention: 13mo 
+
+    tracing: 
+      enabled: true 
+      samplingRate: 0.1 
+
+  

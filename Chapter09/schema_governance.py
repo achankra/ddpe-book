@@ -37,17 +37,17 @@ class ServiceSchema:
                 errors.append("Production services must define alert thresholds")
         return errors
 
-# Example: Team generates a conforming service definition
+# Example: Semiconductor team generates a conforming service definition
 service = ServiceSchema(
-    name="order-processor",
-    owner_team="commerce-team",
-    product_line="e-commerce",
+    name="wafer-yield-analyzer",
+    owner_team="fab-engineering",
+    product_line="semiconductor-manufacturing",
     criticality=CriticalityTier.PRODUCTION,
-    upstream_deps=["inventory-service", "payment-gateway"],
-    downstream_deps=["notification-service"],
+    upstream_deps=["metrology-service", "defect-detection-pipeline"],
+    downstream_deps=["yield-reporting-service"],
     telemetry_endpoint="/metrics",
     log_routing="centralized",
-    alert_thresholds={"error_rate": 0.01, "p99_latency_ms": 500},
+    alert_thresholds={"error_rate": 0.005, "p99_latency_ms": 300},
 )
 
 errors = service.validate()

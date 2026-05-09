@@ -1,0 +1,11 @@
+# Domain-Driven Platform Engineering - Code Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core dependencies (used across multiple chapters)
+openpyxl>=3.1.0          # Excel file generation (Chapters 2-9)
+
+# Observability (Chapter 4, Chapter 7)
+# Note: These are imported in platform_telemetry.py and dora_metrics.py
+# but are optional—the code gracefully handles their absence.
+# opentelemetry-api>=1.20.0
+# opentelemetry-sdk>=1.20.0
