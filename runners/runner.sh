@@ -200,6 +200,15 @@ fi
 if should_run 6; then
     print_chapter_header "6" "GOLDEN PATHS AND API DESIGN PER DOMAIN"
 
+    run_script "Chapter06/override_validator.py" \
+        "Override Validator: 80-15-5 pyramid for configuration override governance"
+
+    run_script "Chapter06/flexibility_scoring.py" \
+        "Flexibility Scoring: balancing standardization vs developer autonomy per config area"
+
+    run_script "Chapter06/customization_tracker.py" \
+        "Customization Tracker: lifecycle management and graduation of domain customizations"
+
     printf "    %s📄 Chapter06/domain-specific-api.http%s\n" "$CYAN" "$NC"
     echo "       Domain-centric database provisioning API example."
     echo "       Developer provides 3 params (name, tier, purpose); the platform"
