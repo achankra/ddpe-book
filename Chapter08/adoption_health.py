@@ -71,3 +71,35 @@ def run_health_check(scores: dict):
         print(f"{icon} {ap.name}: {score}/5 ({label})")
         total += (5 - score) * 20 / len(ANTI_PATTERNS)
     print(f"\nOverall Health Score: {total:.0f}/100")
+
+
+if __name__ == "__main__":
+    print("=" * 62)
+    print("  Platform Adoption Health Check — Anti-Pattern Assessment")
+    print("=" * 62)
+
+    print("\n  Known anti-patterns being evaluated:")
+    for ap in ANTI_PATTERNS:
+        print(f"    - {ap.name}: {ap.description}")
+
+    # Simulate a platform with mixed health
+    scores = {
+        "Build-it-and-they-will-come": 4,   # Severe
+        "Platform-as-Gatekeeper": 2,        # Low
+        "Ignoring-Bounded-Context-Boundaries": 3,  # Moderate
+    }
+
+    print()
+    run_health_check(scores)
+
+    # Show interventions for severe cases
+    print("\n  Recommended Interventions:")
+    for ap in ANTI_PATTERNS:
+        if ap.severity >= 3:
+            print(f"\n    {ap.name} (severity {ap.severity}/5):")
+            for warning in ap.warning_signs:
+                print(f"      Warning sign: {warning}")
+            for action in ap.interventions:
+                print(f"      -> {action}")
+
+    print("=" * 62)

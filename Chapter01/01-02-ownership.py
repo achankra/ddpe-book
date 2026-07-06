@@ -6,6 +6,7 @@ include mandatory tags such as Owner, Domain and Environment.
 
 from pathlib import Path
 import json
+import tempfile
 
 
 # ============================================================================
@@ -82,14 +83,15 @@ if __name__ == "__main__":
         }
     }
 
-    # Write simulated IaC file
-    sample_path = Path("payments_iac_config.json")
+    # Write simulated IaC file to a temp directory (avoids permission issues)
+    tmpdir = tempfile.mkdtemp()
+    sample_path = Path(tmpdir) / "payments_iac_config.json"
     with open(sample_path, "w") as f:
         json.dump(example_config, f, indent=2)
 
     # Run the platform governance check
     # This should FAIL because "Domain" tag is missing
-    validate_mandatory_tags("payments_iac_config.json")
+    validate_mandatory_tags(str(sample_path))
 
     print()
 
@@ -99,7 +101,7 @@ if __name__ == "__main__":
         json.dump(example_config, f, indent=2)
 
     # This should PASS
-    validate_mandatory_tags("payments_iac_config.json")
+    validate_mandatory_tags(str(sample_path))
 
     # Clean up
     sample_path.unlink(missing_ok=True)

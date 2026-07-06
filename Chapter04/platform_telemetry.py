@@ -47,3 +47,44 @@ def trace_platform_operation(operation_name: str):
                     span.set_attribute("duration_seconds", duration)
         return wrapper
     return decorator
+
+
+if __name__ == "__main__":
+    print("=" * 62)
+    print("  Platform Telemetry — OpenTelemetry Instrumentation Demo")
+    print("=" * 62)
+
+    print("\n  Defined Metrics:")
+    print("    Counter   : platform.template.instantiations")
+    print("                Tracks how many times templates are used")
+    print("    Histogram : platform.onboarding.duration (seconds)")
+    print("                Measures time to complete onboarding flows")
+    print("    Counter   : platform.deviation.requests")
+    print("                Counts escape-hatch deviation requests")
+
+    print("\n  Tracing Decorator: @trace_platform_operation")
+
+    @trace_platform_operation("scaffold_service")
+    def scaffold_service(name):
+        time.sleep(0.05)
+        return f"Scaffolded {name}"
+
+    print("\n  Simulating instrumented operations:")
+
+    result = scaffold_service("order-service")
+    print(f"    scaffold_service('order-service') -> '{result}'")
+    print(f"      Span: scaffold_service")
+    print(f"        platform.layer = extension")
+    print(f"        outcome        = success")
+    print(f"        duration       ~ 0.05s")
+
+    print("\n  Recording sample metrics:")
+    template_instantiations.add(1, {"template": "python-api", "domain": "payments"})
+    print("    template_instantiations +1 (python-api, payments)")
+    onboarding_duration.record(42.5, {"domain": "payments"})
+    print("    onboarding_duration = 42.5s (payments)")
+    deviation_requests.add(1, {"type": "custom_database_engine", "tier": "approval"})
+    print("    deviation_requests +1 (custom_database_engine)")
+
+    print("\n  In production, metrics export to Prometheus/OTLP collectors.")
+    print("=" * 62)

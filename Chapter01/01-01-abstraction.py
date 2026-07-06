@@ -92,5 +92,35 @@ def _print_success_message(target_path: str) -> None:
 # ============================================================================
 
 if __name__ == "__main__":
-    # Example: Create a new service in the Payments domain
-    create_python_microservice("payment_status_api", "Payments") 
+    print("=" * 62)
+    print("  Microservice Scaffolding Tool — Abstraction Demo")
+    print("=" * 62)
+
+    print("\n  This tool abstracts away project setup complexity:")
+    print("    - Golden-path templates with best practices baked in")
+    print("    - Domain-specific configuration injection")
+    print("    - Observability (logging, metrics) enabled by default")
+    print("    - CI/CD pipeline pre-configured for first commit")
+
+    print("\n  Simulating: create_python_microservice('payment-status-api', 'Payments')")
+    print()
+    print("  -> Initializing new service: payment-status-api")
+    print("     Domain: Payments")
+    print()
+
+    steps = [
+        ("Copy golden template", f"platform_templates/{TEMPLATE_NAME} -> ./payment-status-api/"),
+        ("Inject domain config", "config.yaml <- DOMAIN: Payments, DEFAULT_LOGGING_LEVEL: INFO"),
+        ("Pre-configure CI/CD", "Pipeline ready for first commit"),
+    ]
+    for i, (step, detail) in enumerate(steps, 1):
+        print(f"  [{i}/{len(steps)}] {step}")
+        print(f"        {detail}")
+
+    print()
+    _print_success_message("./payment-status-api")
+
+    print("\n  Key DDPE Insight:")
+    print("    Developers focus on business logic, not boilerplate.")
+    print("    The platform team maintains the templates centrally.")
+    print("=" * 62)
