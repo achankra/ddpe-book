@@ -27,8 +27,8 @@ Platform adoption maturity model: Ad Hoc, Emerging, Established, Optimized. Benc
 ## Running the Code
 
 ```bash
-python adoption_health.py
-python rollout_planner.py
+python3 adoption_health.py
+python3 rollout_planner.py
 ```
 
 ## Related Reading

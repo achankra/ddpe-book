@@ -246,6 +246,12 @@ if should_run 7; then
     run_script "Chapter07/platform_roi.py" \
         "Platform ROI modeling: multi-year cost/benefit with breakeven analysis"
 
+    run_script "Chapter07/platform_entropy_score.py" \
+        "Platform Entropy Score: tracking domain drift across model, path, and boundary dimensions"
+
+    run_script "Chapter07/compliance_depth_index.py" \
+        "Compliance Depth Index: 4-layer adoption depth scoring with theater detection"
+
     printf "    %s📊 Chapter07/Platform Return on Investment.xlsx%s\n" "$CYAN" "$NC"
     echo "       Open in Excel or Google Sheets. Interactive ROI model with"
     echo "       pre-built formulas for multi-scenario, multi-year analysis."

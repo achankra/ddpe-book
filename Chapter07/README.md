@@ -13,6 +13,28 @@ A developer friction score calculator that weights multiple friction sources —
 ### `platform_roi.py`
 A platform ROI calculator that models build costs, ongoing maintenance, and developer productivity gains across a multi-year adoption ramp. Computes cumulative ROI with breakeven analysis — giving platform leaders the financial language they need to justify and sustain platform investment to business stakeholders.
 
+### `platform_entropy_score.py`
+Implements the **Platform Entropy Score** — the meta-measurement that tracks how fast the platform itself is drifting from domain truth. Measures drift across three dimensions: **Model Drift** (how far platform domain models have diverged from current business processes), **Path Staleness** (what percentage of golden paths have not been updated in response to business model changes), and **Boundary Erosion** (how many cross-context calls bypass official anti-corruption layers). A rising entropy score is the leading indicator that your platform is becoming legacy.
+
+Run it to see entropy profiles for five sample bounded contexts with quarterly trend analysis:
+
+```bash
+python3 platform_entropy_score.py
+```
+
+> **Interactive version available:** The Platform Entropy Score tab in the [Measuring Platform Success](https://ddpe.platformetrics.com) interactive tool provides a UI for tracking entropy across your bounded contexts over time.
+
+### `compliance_depth_index.py`
+Implements the **Golden Path Compliance Depth Index** first introduced in this chapter. Scores how deeply teams have adopted each golden path across four layers — **Surface** (using the tools), **Structural** (following architecture patterns), **Behavioral** (preserving opinionated defaults), and **Cultural** (championing the platform). Uses weighted scoring where deeper layers count more, and detects "adoption theater" — teams that score high on Surface but low on Behavioral/Cultural, signaling they appear adopted but are actively diverging.
+
+Run it to see depth profiles for six sample teams with radar charts, risk assessments, and portfolio-level analytics:
+
+```bash
+python3 compliance_depth_index.py
+```
+
+> **Interactive version available:** The Compliance Depth Index tab in the [Measuring Platform Success](https://ddpe.platformetrics.com) interactive tool provides a UI for scoring your teams' adoption depth across golden paths.
+
 ### `Platform Return on Investment.xlsx`
 Interactive ROI model with pre-built formulas for multi-scenario, multi-year analysis.
 
@@ -30,9 +52,11 @@ Maps team-level engineering metrics to business outcomes. Use to demonstrate the
 ## Running the Code
 
 ```bash
-python dora_metrics.py
-python friction_score.py
-python platform_roi.py
+python3 dora_metrics.py
+python3 friction_score.py
+python3 platform_roi.py
+python3 platform_entropy_score.py
+python3 compliance_depth_index.py
 ```
 
 ## Related Reading
