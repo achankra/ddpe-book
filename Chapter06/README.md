@@ -40,11 +40,34 @@ python3 customization_tracker.py
 ### `domain-specific-api.http`
 An HTTP request example demonstrating a domain-centric database provisioning API. The developer provides only three parameters — name, tier, and purpose — and the platform auto-applies domain-aware defaults including encryption, compliance controls, and backup policies based on the domain context. Contrast this with a generic API that would require dozens of explicit configuration fields.
 
+### `run_domain_api.py`
+Loads `domain-specific-api.yaml` and `domain_defaults.yaml`, then simulates the domain-specific API in action. Processes three provisioning requests, showing the full JSON response with 13 auto-applied settings per request. Includes a configuration effort comparison: 27+ fields with a generic cloud API vs. 3 fields with a domain-specific API (89% reduction).
+
+```bash
+pip install pyyaml
+python3 run_domain_api.py
+```
+
 ### `domain_defaults.yaml`
 A YAML configuration defining opinionated domain defaults for the Payments domain. Covers compute sizing, database settings (encryption at rest, backup retention), security policies (OAuth 2.0, RBAC, PCI-DSS compliance), and observability configuration (metrics, tracing, log levels). This is the configuration that powers the "smart defaults" behavior described in the chapter.
 
+### `run_domain_defaults.py`
+Loads `domain_defaults.yaml` and demonstrates domain-aware default application across three domains (Payments, Healthcare, Marketing). Shows the 22 settings in the YAML, processes provisioning requests from each domain, and produces a cross-domain comparison table showing how the same platform applies different defaults based on domain context.
+
+```bash
+pip install pyyaml
+python3 run_domain_defaults.py
+```
+
 ### `guardrails.rego`
 Open Policy Agent (Rego) policy rules enforcing security, compliance, and operational guardrails. Examples include: public-facing services must have WAF enabled, databases must use encryption at rest, PCI-DSS domains require 90-day backup retention, and all deployments must define health checks. These policies run at the platform level, making compliance automatic rather than advisory.
+
+### `run_guardrails.py`
+Reads `guardrails.rego` and evaluates its 4 policy rules against 8 sample infrastructure inputs using a Python-based evaluator (no OPA installation required). Tests all four rule types — WAF enforcement, encryption, PCI-DSS backup retention, and health check requirements — with both compliant and non-compliant inputs.
+
+```bash
+python3 run_guardrails.py
+```
 
 ### `API_Design_Standards.xlsx`
 Documents API naming conventions, versioning strategy, error formats, and domain-specific patterns.
@@ -56,15 +79,19 @@ Documents API naming conventions, versioning strategy, error formats, and domain
 ## Running the Code
 
 ```bash
+pip install pyyaml
 python3 override_validator.py
 python3 flexibility_scoring.py
 python3 customization_tracker.py
+python3 run_domain_defaults.py
+python3 run_domain_api.py
+python3 run_guardrails.py
 ```
 
-The `.http` file can be used with VS Code's REST Client extension or any HTTP client. The `.rego` file can be evaluated with OPA:
+The `.http` file can also be used with VS Code's REST Client extension. The `.rego` file can be evaluated with OPA directly:
 
 ```bash
-opa eval -i input.json -d guardrails.rego "data.guardrails"
+opa eval -i input.json -d guardrails.rego "data.platform.guardrails.deny"
 ```
 
 ## Related Reading

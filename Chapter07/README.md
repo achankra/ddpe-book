@@ -10,8 +10,22 @@ A domain-aware DORA metrics tracker that records deployments and computes the fo
 ### `friction_score.py`
 A developer friction score calculator that weights multiple friction sources — cross-team dependencies, test flakiness, security assessment delays, environment provisioning time, and more — into a composite score. Includes trend analysis and predictive warnings so platform teams can address rising friction before it impacts adoption.
 
+### `run_friction_score.py`
+Extends `friction_score.py` to show a full portfolio assessment across three domains (Payments, Healthcare, Marketing). Displays per-source breakdown with severity, weight, and trend direction for each friction source, plus a cross-domain comparison table and prioritized recommendations for which friction sources to address first.
+
+```bash
+python3 run_friction_score.py
+```
+
 ### `platform_roi.py`
 A platform ROI calculator that models build costs, ongoing maintenance, and developer productivity gains across a multi-year adoption ramp. Computes cumulative ROI with breakeven analysis — giving platform leaders the financial language they need to justify and sustain platform investment to business stakeholders.
+
+### `run_platform_roi.py`
+Extends `platform_roi.py` with three scenarios (Conservative, Baseline, Aggressive) varying adoption ramp and productivity gains. Shows year-by-year breakdown with adoption percentages, developer counts, benefits, costs, and cumulative returns. Includes breakeven analysis and a scenario comparison table.
+
+```bash
+python3 run_platform_roi.py
+```
 
 ### `platform_entropy_score.py`
 Implements the **Platform Entropy Score** — the meta-measurement that tracks how fast the platform itself is drifting from domain truth. Measures drift across three dimensions: **Model Drift** (how far platform domain models have diverged from current business processes), **Path Staleness** (what percentage of golden paths have not been updated in response to business model changes), and **Boundary Erosion** (how many cross-context calls bypass official anti-corruption layers). A rising entropy score is the leading indicator that your platform is becoming legacy.
@@ -54,7 +68,9 @@ Maps team-level engineering metrics to business outcomes. Use to demonstrate the
 ```bash
 python3 dora_metrics.py
 python3 friction_score.py
+python3 run_friction_score.py
 python3 platform_roi.py
+python3 run_platform_roi.py
 python3 platform_entropy_score.py
 python3 compliance_depth_index.py
 ```
