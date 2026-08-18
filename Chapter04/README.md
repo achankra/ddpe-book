@@ -19,6 +19,9 @@ Sets up OpenTelemetry-based instrumentation for platform operations. Defines cou
 ### `deviation_analytics.sql`
 A SQL query that aggregates golden-path deviation data over 90 days by type and domain, calculates approval rates, and recommends whether frequently-approved deviations should be absorbed into the golden path. Use this against your platform's deviation tracking database to evolve your golden paths based on real usage data.
 
+### `run_deviation_analytics.py`
+Python wrapper for `deviation_analytics.sql`. Creates an in-memory SQLite database seeded with sample deviation data across BFSI-Payments, Healthcare, and Retail domains, then runs the SQL query from the book. Demonstrates how the query surfaces deviations that should become golden path capabilities (3+ teams, >80% approval) versus patterns that need better guardrails (<20% approval).
+
 ### `payments_dashboard.yaml`
 A domain dashboard definition for a Payments monitoring setup with panels for transaction success rate, settlement latency, volume by type, and error rate by payment method. Includes alerting rules with domain-appropriate thresholds — showing how observability should be domain-aware, not generic.
 
@@ -36,6 +39,7 @@ python escape_hatch.py
 python evolution_policy.py
 python onboarding_flow.py
 python platform_telemetry.py
+python run_deviation_analytics.py
 ```
 
 ## Related Reading
