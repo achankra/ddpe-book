@@ -20,7 +20,11 @@ python 01-01-abstraction.py
 python 01-02-ownership.py
 ```
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) covers the broader principles of self-service platform interfaces
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) covers the broader principles of self-service platform interfaces
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) provides a comprehensive guide to building secure, developer-focused platforms

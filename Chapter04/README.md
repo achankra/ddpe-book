@@ -46,7 +46,11 @@ python run_deviation_analytics.py
 python run_payments_dashboard.py
 ```
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) provides implementation patterns for golden paths and self-service interfaces
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) provides implementation patterns for golden paths and self-service interfaces
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) covers platform observability and telemetry design in depth

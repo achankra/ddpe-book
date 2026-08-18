@@ -79,9 +79,21 @@ The codebase intentionally uses minimal dependencies:
 - **openpyxl** — Excel file generation (used by assessment and scoring tools across chapters)
 - **opentelemetry-api / opentelemetry-sdk** — Optional; used in Chapter 4 and Chapter 7 for observability examples. The code handles their absence gracefully.
 
+## Simulation Data Sources
+
+Every script in this repository is self-contained — no external databases, APIs, or credentials are required. The simulation data embedded in each script falls into three categories:
+
+**Domain Registries and Policy Matrices.** Static configuration that defines how domains behave: regulatory rules for BFSI transactions (Ch9), the 80-15-5 override policy matrix (Ch6), domain defaults for Payments/Healthcare/Marketing (Ch6), OPA guardrail policies (Ch6), escape-hatch tier classifications (Ch4), evolution policies per platform layer (Ch4), dashboard panel definitions (Ch4), bounded context boundary maps (Ch3), service catalog definitions (Ch5), anti-pattern catalogs (Ch8), rollout phase definitions (Ch8), domain context registries for GenAI (Ch10), and bounded context profiles for entropy scoring (Ch7).
+
+**Simulated User Requests.** The transactions, provisioning requests, and developer actions that exercise the domain registries: five BFSI transactions from $12.50 contactless to $75K institutional (Ch9), patient data access attempts with care-team validation (Ch9), seven service definitions tested against schema governance (Ch9), database provisioning requests across domains (Ch5, Ch6), natural-language developer prompts parsed into provisioning intents (Ch10), deployment and incident records for DORA tracking (Ch7), deviation records seeded into SQLite (Ch4), and IaC resource definitions checked for ownership tags (Ch1).
+
+**Scoring and Assessment Frameworks.** The rubrics, thresholds, and weighting criteria that produce quantitative outputs: friction source weights and trend analysis (Ch7), 4-layer compliance depth scoring with adoption theater detection (Ch7), platform entropy across model drift, path staleness, and boundary erosion (Ch7), multi-scenario ROI modeling with breakeven analysis (Ch7), flexibility scoring across standardization and developer autonomy axes (Ch6), customization graduation criteria from Table 6-5 (Ch6), and adoption health scoring against anti-pattern indicators (Ch8).
+
+All data is representative of real-world patterns but uses fictional organizations, amounts, and identifiers. To adapt examples for your own organization, modify the data structures at the top of each script — the processing logic remains the same.
+
 ## Also by Ajay Chankramath
 
-- **[Effective Platform Engineering](https://effectiveplatformengineering.org)** — Build self-service interfaces to boost developer experience (Manning, 2025)
+- **[Effective Platform Engineering](https://effectiveplatformengineering.com)** — Build self-service interfaces to boost developer experience (Manning, 2025)
 - **[The Platform Engineer's Handbook](https://peh-packt.platformetrics.com)** — Build secure, developer-focused platforms that streamline modern software delivery (Packt, 2026)
 
 ## Companion Site

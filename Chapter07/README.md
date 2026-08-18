@@ -75,7 +75,11 @@ python3 platform_entropy_score.py
 python3 compliance_depth_index.py
 ```
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) covers developer experience metrics and feedback loops
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) covers developer experience metrics and feedback loops
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) provides additional measurement frameworks for platform maturity

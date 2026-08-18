@@ -37,7 +37,11 @@ The script loads `service_definition.yaml`, validates it, processes five sample 
 
 The YAML file serves as a template for defining your own platform service offerings. The Python script demonstrates how domain teams consume the offering through different channels with domain-aware compliance. The Excel canvas is designed to be filled in collaboratively during planning sessions — see the spreadsheet entry above for detailed instructions.
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) covers the platform-as-product mindset and interaction modes in detail
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) covers the platform-as-product mindset and interaction modes in detail
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) provides practical guidance on building developer portals and service catalogs

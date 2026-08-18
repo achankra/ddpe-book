@@ -29,3 +29,4 @@ __pycache__/
 *.tmp
 .~lock.*
 *.pdf
+.DS_Store

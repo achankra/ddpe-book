@@ -31,7 +31,11 @@ python3 adoption_health.py
 python3 rollout_planner.py
 ```
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) covers adoption strategies and developer experience optimization
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) covers adoption strategies and developer experience optimization
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) provides additional patterns for scaling platform adoption across enterprise organizations

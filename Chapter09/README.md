@@ -51,7 +51,11 @@ python3 schema_governance.py
 python3 run_schema_governance.py
 ```
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) covers platform patterns for regulated industries
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) covers platform patterns for regulated industries
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) provides additional case studies and implementation patterns

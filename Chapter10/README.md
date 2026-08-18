@@ -35,7 +35,11 @@ python genai_platform_interface.py
 
 The script runs three example prompts demonstrating how the same interface handles different domains and resource types with appropriate domain-aware defaults.
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) covers the foundations of self-service platform interfaces that GenAI extends
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) covers the foundations of self-service platform interfaces that GenAI extends
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) provides practical guidance on AI-augmented platform services and automation

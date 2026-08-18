@@ -28,7 +28,11 @@ python layer_separation.py
 pytest test_architecture.py
 ```
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) — covers strategic and tactical patterns for platform teams
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) — covers strategic and tactical patterns for platform teams
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) — covers modular platform architecture and service boundary design

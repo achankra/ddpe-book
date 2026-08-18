@@ -17,5 +17,5 @@ This chapter covers organizational progression of domain thinking, layered domai
 
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) — discusses platform team structures and how they map to organizational domains
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) — discusses platform team structures and how they map to organizational domains
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) — covers modular platform architecture and organizational design

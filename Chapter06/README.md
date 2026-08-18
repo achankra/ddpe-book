@@ -94,7 +94,11 @@ The `.http` file can also be used with VS Code's REST Client extension. The `.re
 opa eval -i input.json -d guardrails.rego "data.platform.guardrails.deny"
 ```
 
+## Simulation Data
+
+All scripts use embedded simulation data — no external dependencies required. See [Simulation Data Sources](../README.md#simulation-data-sources) in the repository root for a categorized overview across all chapters.
+
 ## Related Reading
 
-- [Effective Platform Engineering](https://effectiveplatformengineering.org) covers API design for self-service platform interfaces
+- [Effective Platform Engineering](https://effectiveplatformengineering.com) covers API design for self-service platform interfaces
 - [The Platform Engineer's Handbook](https://peh-packt.platformetrics.com) provides comprehensive coverage of policy-as-code and security guardrails
