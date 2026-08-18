@@ -156,14 +156,17 @@ if should_run 4; then
     run_script "Chapter04/platform_telemetry.py" \
         "Platform telemetry: OpenTelemetry metrics and tracing for platform ops"
 
+    run_script "Chapter04/run_deviation_analytics.py" \
+        "Deviation analytics: reads deviation_analytics.sql and surfaces golden-path gaps"
+
+    run_script "Chapter04/run_payments_dashboard.py" \
+        "Payments dashboard: visualizes payments_dashboard.yaml with simulated domain data"
+
     printf "    %s📄 Chapter04/deviation_analytics.sql%s\n" "$CYAN" "$NC"
-    echo "       SQL query for analyzing golden-path deviations over 90 days."
-    echo "       Run against your platform's deviation tracking database to"
-    echo "       identify deviations that should be absorbed into golden paths."
+    echo "       Source SQL query for golden-path deviation analysis (used by run_deviation_analytics.py)."
     echo ""
     printf "    %s📄 Chapter04/payments_dashboard.yaml%s\n" "$CYAN" "$NC"
-    echo "       Domain-aware monitoring dashboard definition for Payments."
-    echo "       Import into Grafana or adapt for your observability stack."
+    echo "       Source YAML dashboard definition for Payments (used by run_payments_dashboard.py)."
     echo ""
     printf "    %s📊 Chapter04/Platform_Anatomy_Assessment.xlsx%s\n" "$CYAN" "$NC"
     echo "       Open in Excel or Google Sheets. Assess your platform's maturity"
