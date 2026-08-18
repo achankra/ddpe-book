@@ -4,6 +4,7 @@
 # then runs the SQL query from the book to analyze golden-path deviations.
 
 import sqlite3
+import os
 from datetime import datetime, timedelta
 import random
 
@@ -89,35 +90,15 @@ def seed_data(conn):
     conn.commit()
 
 def run_analytics(conn):
-    """Run the deviation_analytics.sql query from the book."""
-    query = """
-    WITH deviation_summary AS (
-      SELECT
-        deviation_type,
-        domain,
-        COUNT(*) as deviation_count,
-        COUNT(DISTINCT team_name) as affected_teams,
-        AVG(CASE WHEN approved THEN 1 ELSE 0 END) as approval_rate
-      FROM deviations
-      WHERE requested_at >= date('now', '-90 days')
-      GROUP BY deviation_type, domain
-    )
-    SELECT
-      deviation_type,
-      domain,
-      deviation_count,
-      affected_teams,
-      ROUND(approval_rate * 100, 1) as approval_pct,
-      CASE
-        WHEN affected_teams >= 3 AND approval_rate > 0.8
-        THEN 'Consider adding to golden path'
-        WHEN approval_rate < 0.2
-        THEN 'Review deviation category'
-        ELSE 'Monitor'
-      END as recommendation
-    FROM deviation_summary
-    ORDER BY deviation_count DESC
-    """
+    """Read and run deviation_analytics.sql from the book.
+    Adapts PostgreSQL syntax to SQLite where needed."""
+    sql_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "deviation_analytics.sql")
+    with open(sql_path, "r") as f:
+        query = f.read()
+
+    # Adapt PostgreSQL date syntax to SQLite
+    query = query.replace("CURRENT_DATE - INTERVAL '90 days'", "date('now', '-90 days')")
+
     return conn.execute(query).fetchall()
 
 

@@ -25,6 +25,9 @@ Python wrapper for `deviation_analytics.sql`. Creates an in-memory SQLite databa
 ### `payments_dashboard.yaml`
 A domain dashboard definition for a Payments monitoring setup with panels for transaction success rate, settlement latency, volume by type, and error rate by payment method. Includes alerting rules with domain-appropriate thresholds — showing how observability should be domain-aware, not generic.
 
+### `run_payments_dashboard.py`
+Python visualizer for `payments_dashboard.yaml`. Reads the YAML dashboard definition and renders each panel in the terminal with simulated payments data — gauge with color thresholds, time-series sparkline for settlement latency, transaction volume breakdown by type, and error rate table by payment method. Shows what domain-aware observability looks like in practice versus generic infrastructure metrics.
+
 ### `Platform_Anatomy_Assessment.xlsx`
 Assess your platform's maturity across layering, golden paths, deviation management, and observability.
 
@@ -40,6 +43,7 @@ python evolution_policy.py
 python onboarding_flow.py
 python platform_telemetry.py
 python run_deviation_analytics.py
+python run_payments_dashboard.py
 ```
 
 ## Related Reading
